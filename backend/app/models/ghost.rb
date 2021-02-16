@@ -1,0 +1,3 @@
+class Ghost < ApplicationRecord
+    
+end
