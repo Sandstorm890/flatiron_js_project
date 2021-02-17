@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_17_065803) do
+ActiveRecord::Schema.define(version: 2021_02_17_213521) do
 
   create_table "evidences", force: :cascade do |t|
     t.string "name"
@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 2021_02_17_065803) do
     t.string "name"
     t.text "strengths"
     t.text "weaknesses"
-    t.text "evidence"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
