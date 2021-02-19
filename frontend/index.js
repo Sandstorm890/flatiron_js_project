@@ -1,7 +1,7 @@
 const port = `http://localhost:3000`
 const form = document.getElementById("ghost-form")
 const list = document.getElementById("ghost-list")
-const ghostApiCall = new ghostApi(port)
+const ghostApi = new GhostApi(port)
 const nameInput = document.getElementById("ghost-name")
 const strengthsInput = document.getElementById("ghost-strengths")
 const weaknessesInput = document.getElementById("ghost-weaknesses")
@@ -35,7 +35,7 @@ function handleSubmit(e) {
         .then(json => renderGhosts(json.data))
 }
 
-ghostApiCall.getGhosts()
+ghostApi.getGhosts()
 
 // function renderGhosts(arg){
 //     const ghosts = arg["data"]
