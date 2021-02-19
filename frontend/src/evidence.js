@@ -31,6 +31,7 @@ class Evidence {
                 e.element.className = 'activated'
                 e.active = false
             }
+            
             Ghost.filterByEvidence(activeEvidence)
         })
     }

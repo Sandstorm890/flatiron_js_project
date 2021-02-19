@@ -8,7 +8,6 @@ class Ghost {
         this.strengths = strengths
         this.weaknesses = weaknesses
         this.evidence_id = evidence_id
-        // console.log(evidence_id)
         this.id = id
         this.element = document.createElement('li')
         this.element.dataset["id"] = id
@@ -44,8 +43,8 @@ class Ghost {
 
         if (evidence) {
             for (const ghost of Ghost.all) {
-                console.log(evidence.id)
-                console.log(Ghost.all)
+                // console.log(evidence.id)
+                // console.log(Ghost.all)
                 if (ghost.evidence_id === parseInt(evidence.id)) {
                     ghost.element.style.display = ""
                 } else {
@@ -79,7 +78,8 @@ class Ghost {
             <ul data-id="${this.id}">
                 
                 <li class="strengths">${this.strengths}</li>
-                <li class="weaknesses">${this.weaknesses}</li> 
+                <li class="weaknesses">${this.weaknesses}</li>
+                 
                 
             </ul>
             <button class="edit" data-id="${this.id}">Edit</button>

@@ -12,7 +12,6 @@ class GhostApi {
             json["data"].forEach(element => {
                 // console.log(element.attributes["evidence"].id)
                 const ghost = new Ghost({id: element.id, evidence_id: element.attributes["evidence"].id,  ...element.attributes})
-                console.log(ghost)
                 ghost.attachToDom()
             });
         })
