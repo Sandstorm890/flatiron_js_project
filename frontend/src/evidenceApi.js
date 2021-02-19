@@ -1,4 +1,4 @@
-class evidenceApi {
+class EvidenceApi {
 
     constructor(port) {
         this.baseUrl = `${port}/evidences`
@@ -9,8 +9,9 @@ class evidenceApi {
         .then(r => r.json())
         .then(json => {
             json["data"].forEach(element => {
-                const evidence = new evidence({id: element.id, ...element.attributes})
+                const evidence = new Evidence({id: element.id, ...element.attributes})
                 evidence.addToDom()
+                evidence.addToDropDown()
             });
                 
         })
