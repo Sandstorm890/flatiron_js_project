@@ -1,6 +1,7 @@
 class GhostsController < ApplicationController
 
     def index
+        # byebug
         ghosts = Ghost.all
         render json: GhostSerializer.new(ghosts)
     end
@@ -11,6 +12,7 @@ class GhostsController < ApplicationController
     end
 
     def create
+        # byebug
         ghost = Ghost.new(ghost_params)
         if ghost.save
             render json: GhostSerializer.new(ghost)
@@ -37,7 +39,7 @@ class GhostsController < ApplicationController
     private
 
     def ghost_params
-        params.require(:ghost).permit(:name, :strengths, :weaknesses, :evidence)
+        params.require(:ghost).permit(:name, :strengths, :weaknesses, :evidence_id)
     end
     
 end
