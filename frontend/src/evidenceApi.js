@@ -10,7 +10,7 @@ class EvidenceApi {
         .then(json => {
             json["data"].forEach(element => {
                 const evidence = new Evidence({id: element.id, ...element.attributes})
-                evidence.addToDom()
+                evidence.addEvidenceButtonsToDom()
                 evidence.addToDropDown()
             });
                 
