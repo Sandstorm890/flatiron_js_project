@@ -2,6 +2,7 @@ const port = `http://localhost:3000`
 const form = document.getElementById("ghost-form")
 const list = document.getElementById("ghost-list")
 const dropdown = document.getElementById('evidence-dropdown')
+const dropdownEdit = document.getElementById('edit-dropdown')
 const ghostApi = new GhostApi(port)
 const evidenceApi = new EvidenceApi(port)
 const nameInput = document.getElementById("ghost-name")
