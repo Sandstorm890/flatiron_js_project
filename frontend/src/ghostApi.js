@@ -8,9 +8,7 @@ class GhostApi {
         fetch(this.baseUrl)
         .then(r => r.json())
         .then(json => {
-            // console.log(json["data"])
             json["data"].forEach(element => {
-                // console.log(element.attributes["evidence"].id)
                 const ghost = new Ghost({id: element.id, evidence_id: element.attributes["evidence"].id,  ...element.attributes})
                 ghost.attachToDom()
             });
@@ -43,6 +41,30 @@ class GhostApi {
                 const newGhost = new Ghost({id: json.data.id, ...json.data.attributes})
                 newGhost.attachToDom()
             })        
+    }
+
+    editGhost = (ghost) => {
+        let {name, weaknesses, strengths, evidence} = ghost
+        const ghostInfo = {
+            name,
+            weaknesses,
+            strengths,
+            evidence
+        }
+
+        const configObj = {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            }, body:JSON.stringify(ghostInfo)
+        }
+
+        fetch(`${this.baseUrl}/${ghost.id}`, configObj)
+        .then(r => r.json())
+        .then(json => {
+            ghost.render()
+        })
     }
 
     deleteGhost = (id) => {

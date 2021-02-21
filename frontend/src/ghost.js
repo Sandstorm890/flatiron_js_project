@@ -24,27 +24,33 @@ class Ghost {
             this.deleteGhost(e)
         } else if(e.target.innerText === "Save") {
             e.target.innerText = "Edit"
-            this.saveUpdatedItem()
+            this.saveUpdatedGhost()
         }
     }
 
     createEditFields = (editBtn) => {
-        const li = this.element
-        const div = this.element.querySelector('div')
-
-        for (const e of div.children) {
+        const ghostName = this.element.querySelector('strong')
+        const ul = this.element.querySelector('ul')
+        let nameInputValue = ghostName.innerText
+        ghostName.outerHTML = `<input type="text" class="edit-name" value="${nameInputValue}">`
+        
+        for (const e of ul.children) {
             let inputValue = e.innerText
             let name = e.classList[0]
             e.outerHTML = `<input type="text" class="edit-${name}" value="${inputValue}">`
         }
     }
 
-    static filterByEvidence(evidence) {
+    saveUpdatedGhost = () => {
+        this.name = this.element.querySelector(".edit-name").value
+        this.weaknesses = this.element.querySelector(".edit-weaknesses").value
+        this.strengths = this.element.querySelector(".edit-strengths").value
+        ghostApi.editGhost(this)
+    }
 
+    static filterByEvidence(evidence) {
         if (evidence) {
             for (const ghost of Ghost.all) {
-                // console.log(evidence.id)
-                // console.log(Ghost.all)
                 if (ghost.evidence_id === parseInt(evidence.id)) {
                     ghost.element.style.display = ""
                 } else {
@@ -68,7 +74,7 @@ class Ghost {
         this.strengths = this.element.querySelector("edit-strengths").value
         this.weaknesses = this.element.querySelector(".edit-description").value
 
-        ghostApi.sendPatch(this)
+        ghostApi.updateGhost(this)
     }
 
     render() {
