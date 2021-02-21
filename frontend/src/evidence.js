@@ -17,6 +17,13 @@ class Evidence {
         dropdown.append(option)
     }
 
+    addToEditDropDown() {
+        const option = document.createElement('option')
+        option.value  = this.id
+        option.innerText = this.name
+        dropdownEdit.append(option)
+    }
+
     currentEvidence = (e) => {
         let activeEvidence
         Evidence.all.forEach(e => {
