@@ -4,6 +4,7 @@ class Ghost {
     static container = document.getElementById('ghost-list')
 
     constructor({id, name, strengths, weaknesses, evidence_id}){
+        // console.log(Evidence.all[0].name)
         this.name = name
         this.strengths = strengths
         this.weaknesses = weaknesses
@@ -78,13 +79,14 @@ class Ghost {
     }
 
     render() {
-    
+        
         this.element.innerHTML = `
             <strong class="name">${this.name}</strong>
             <ul data-id="${this.id}">
                 
                 <li class="strengths">${this.strengths}</li>
                 <li class="weaknesses">${this.weaknesses}</li>
+                <li class="evidence">${Evidence.all[(this.evidence_id)-1].name}</li>
                  
                 
             </ul>
