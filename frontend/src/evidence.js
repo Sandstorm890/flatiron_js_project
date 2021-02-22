@@ -3,6 +3,8 @@ class Evidence {
     static all = []
     static evidenceButtons = document.getElementById("evidence-buttons")
 
+    
+
     constructor({id, name}){
         this.id = id
         this.name = name
@@ -32,7 +34,7 @@ class Evidence {
                 e.active = true
                 activeEvidence = e
             } else {
-                e.element.className = 'activated'
+                e.element.className = 'btn-dark'
                 e.active = false
             }
             
@@ -48,10 +50,10 @@ class Evidence {
 
     addEvidenceListeners() {
         this.element.addEventListener('click', this.currentEvidence)
-        // add color change event listener here
     }
 
     addEvidenceButtonsToDom() {
+        this.element.className = "btn btn-dark"
         Evidence.evidenceButtons.append(this.render())
         this.addEvidenceListeners()
     }
