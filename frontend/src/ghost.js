@@ -4,7 +4,6 @@ class Ghost {
     static container = document.getElementById('ghost-list')
 
     constructor({id, name, strengths, weaknesses, evidence_id}){
-        // console.log(Evidence.all[0].name)
         this.name = name
         this.strengths = strengths
         this.weaknesses = weaknesses
@@ -38,7 +37,13 @@ class Ghost {
         for (const e of ul.children) {
             let inputValue = e.innerText
             let name = e.classList[0]
-            e.outerHTML = `<input type="text" class="edit-${name}" value="${inputValue}">`
+
+            if (e.className === "evidence") {
+                e.outerHTML = `<select class="edit-${name}" value="${inputValue}">`
+            
+            } else if (e.className === "strengths" || e.className === "weaknesses") {
+                e.outerHTML = `<input type="text" class="edit-${name}" value="${inputValue}">`
+            }
         }
     }
 
@@ -79,19 +84,20 @@ class Ghost {
     }
 
     render() {
-        
+        this.element.className = "list-group-item"
         this.element.innerHTML = `
-            <strong class="name">${this.name}</strong>
-            <ul data-id="${this.id}">
-                
-                <li class="strengths">${this.strengths}</li>
-                <li class="weaknesses">${this.weaknesses}</li>
-                <li class="evidence">${Evidence.all[(this.evidence_id)-1].name}</li>
+            <strong class="name display-4">${this.name}</strong>
+            <ul class="mt-3" data-id="${this.id}">
+                <label class="font-weight-bold pt-2">Strengths </label>
+                <li class="strengths">${this.strengths}</li><br>
+                <label class="font-weight-bold">Weaknesses </label>
+                <li class="weaknesses">${this.weaknesses}</li><br>
+                <label class="font-weight-bold">Evidence </label>
+                <li class="evidence">${Evidence.all[this.evidence_id-1].name}</li>
                  
-                
-            </ul>
-            <button class="edit" data-id="${this.id}">Edit</button>
-            <button class="delete" data-id="${this.id}">Delete</button>
+            </ul><br>
+            <button class="edit btn-dark" data-id="${this.id}">Edit</button>
+            <button class="delete btn-dark" data-id="${this.id}">Delete</button>
         `
         
         return this.element
