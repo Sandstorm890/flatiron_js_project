@@ -2,7 +2,7 @@ const port = `http://localhost:3000`
 const form = document.getElementById("ghost-form")
 const list = document.getElementById("ghost-list")
 const dropdown = document.getElementById('evidence-dropdown')
-const dropdownEdit = document.getElementById('edit-dropdown')
+const dropdownEdit = document.getElementById('edit-evidence')
 const ghostApi = new GhostApi(port)
 const evidenceApi = new EvidenceApi(port)
 const nameInput = document.getElementById("ghost-name")
@@ -11,12 +11,14 @@ const weaknessesInput = document.getElementById("ghost-weaknesses")
 const evidenceInput = document.getElementById("evidence-dropdown")
 const submitButton = document.getElementById("submit-btn")
 const showAllButton = document.getElementById("show-all-btn")
+const evidenceButtons = document.getElementById("evidence-buttons")
+
 
 submitButton.addEventListener('click', handleSubmit)
 showAllButton.addEventListener('click', unhideAll)
 
 function handleSubmit(e) {
-    e.preventDefault()
+    // e.preventDefault()
     ghostApi.createGhost()
     // e.target.reset()
 }
