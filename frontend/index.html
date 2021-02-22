@@ -3,38 +3,37 @@
        <meta charset="utf-8">
         <title>Ghost Tracker</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="style.css">
    </head>
-   <body>
+   <body class="bg-secondary ml-4">
 
-        <h1>Ghost Tracker</h1>
-        <div id="evidence-buttons">
-            <button id="show-all-btn">All</button>
+        <h1 class="display-3">Ghost Tracker</h1>
+        <div class="btn-group mb-4" id="evidence-buttons">
+            <button class="btn btn-dark" id="show-all-btn">All</button>
         </div> 
-        <ul id="ghost-list">
+        <ul class="mr-5" id="ghost-list">
         </ul>
 
-        <h3>Add a New Ghost:</h3>
+        <h3 class="display-4 font-weight-bold mb-4">Add a New Ghost:</h3>
+        
         <form id="ghost-form">
-            <label for="ghost-name">Name: </label>
+            <label class="font-weight-bold" for="ghost-name">Name: </label>
             <input type="text" name="name" id="ghost-name"><br><br>
-            <label for="ghost-strengths">Strengths: </label>
+            <label class="font-weight-bold" for="ghost-strengths">Strengths: </label>
             <input type="text" name="strengths" id="ghost-strengths"><br><br>
-            <label for="ghost-weaknesses">Weaknesses: </label>
+            <label class="font-weight-bold" for="ghost-weaknesses">Weaknesses: </label>
             <input type="text" name="weaknesses" id="ghost-weaknesses"><br><br>
-            <label for="evidence">Evidence: </label>
+            <label class="font-weight-bold" for="evidence">Evidence: </label>
             <select name="evidence_id" id="evidence-dropdown">
-                
-            </select><br><br>
-            <input type="submit" id="submit-btn" value="Create">
-        </form>
 
+            </select><br><br>
+            <input class="btn-dark mb-3" type="submit" id="submit-btn" value="Create">
+        </form>
+        
         <script src="src/evidence.js" type="text/javascript"></script>
         <script src="src/evidenceApi.js" type="text/javascript"></script>
         <script src="src/ghost.js" type="text/javascript"></script>
         <script src="src/ghostApi.js" type="text/javascript"></script>
 
         <script src="index.js" type="text/javascript"></script>
-
     </body>
 </html>
