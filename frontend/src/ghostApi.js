@@ -16,7 +16,6 @@ class GhostApi {
     }
 
     createGhost() {
-        console.log(evidenceInput.value)
         const ghostInfo = {
             ghost: {
                 name: nameInput.value,
@@ -39,6 +38,7 @@ class GhostApi {
             .then(r => r.json())
             .then(json => {
                 const newGhost = new Ghost({id: json.data.id, ...json.data.attributes})
+                newGhost.evidence_id = json.data.attributes.evidence.id
                 newGhost.attachToDom()
             })        
     }
@@ -78,6 +78,6 @@ class GhostApi {
 
         fetch(`${this.baseUrl}/${id}`, configObj)
             .then(r => r.json())
-            .then(json => alert(json.message))
+            
     }
 }
