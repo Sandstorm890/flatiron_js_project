@@ -3,8 +3,8 @@ const form = document.getElementById("ghost-form")
 const list = document.getElementById("ghost-list")
 const dropdown = document.getElementById('evidence-dropdown')
 const dropdownEdit = document.getElementById('edit-evidence')
-const ghostApi = new GhostApi(port)
-const evidenceApi = new EvidenceApi(port)
+const ghostApi = new GhostApi(port) // creates a single instance of the ghostApi class
+const evidenceApi = new EvidenceApi(port) // creates a single instance of the evidenceApi class
 const nameInput = document.getElementById("ghost-name")
 const strengthsInput = document.getElementById("ghost-strengths")
 const weaknessesInput = document.getElementById("ghost-weaknesses")
@@ -17,17 +17,17 @@ const evidenceButtons = document.getElementById("evidence-buttons")
 submitButton.addEventListener('click', handleSubmit)
 showAllButton.addEventListener('click', unhideAll)
 
-function handleSubmit(e) {
+function handleSubmit(e) { // function that is called when submit button is clicked
     // e.preventDefault()
-    ghostApi.createGhost()
+    ghostApi.createGhost() // tells the ghostApi class to create a ghost
     // e.target.reset()
 }
 
-function unhideAll() {
-    for (let i of list.children) {
-        i.style.display = ""
+function unhideAll() { // unhides all of the hidden ul elements that are hidden by the evidence sort functions
+    for (let i of list.children) { // iterated through all of the children of the ghost-list ul element
+        i.style.display = "" // sets the display attribute of each element to equal an empty string so it displays on the page
     }
 }
 
-ghostApi.getGhosts()
-evidenceApi.getEvidence()
+ghostApi.getGhosts() // calls the getGhosts function of the ghostApi class to get all the data about our ghosts and display them on the page
+evidenceApi.getEvidence() // calls on the getEvidence function of the evidenceApi class to get and display all of the evidence info

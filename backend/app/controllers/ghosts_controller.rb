@@ -12,7 +12,6 @@ class GhostsController < ApplicationController
     end
 
     def create
-        # byebug
         ghost = Ghost.new(ghost_params)
         if ghost.save
             render json: GhostSerializer.new(ghost)
