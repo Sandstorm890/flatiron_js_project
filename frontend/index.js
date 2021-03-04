@@ -18,9 +18,9 @@ submitButton.addEventListener('click', handleSubmit)
 showAllButton.addEventListener('click', unhideAll)
 
 function handleSubmit(e) { // function that is called when submit button is clicked
-    e.preventDefault()
+    e.preventDefault() // stops the submit action from rerendering the page
     ghostApi.createGhost() // tells the ghostApi class to create a ghost
-    // e.target.reset()
+    e.target.reset // clears the form after submitting - DOESN'T WORK WHEN e.preventDefault IS PRESENT
 }
 
 function unhideAll() { // unhides all of the hidden ul elements that are hidden by the evidence sort functions
