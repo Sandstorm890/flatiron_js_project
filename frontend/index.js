@@ -18,7 +18,7 @@ submitButton.addEventListener('click', handleSubmit)
 showAllButton.addEventListener('click', unhideAll)
 
 function handleSubmit(e) { // function that is called when submit button is clicked
-    // e.preventDefault()
+    e.preventDefault()
     ghostApi.createGhost() // tells the ghostApi class to create a ghost
     // e.target.reset()
 }

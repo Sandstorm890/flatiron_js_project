@@ -1,7 +1,6 @@
 class GhostsController < ApplicationController
 
     def index
-        # byebug
         ghosts = Ghost.all
         render json: GhostSerializer.new(ghosts)
     end

@@ -25,13 +25,16 @@ class Evidence {
         dropdownEdit.append(option)
     }
 
+    getEvidenceNameById() {
+        return Evidence.all.find(evidence => evidence.id === this.evidence_id)[0],name
+    }
+
     currentEvidence = (e) => {
         let activeEvidence // sets an undefined variable to assign instances of evidence to (if any)
         Evidence.all.forEach(e => { // iterates through all of our stored evidence instances
-            if (e.element === this.element && !this.active) { // checks if the element provided as an argument (e) is the same as the element of the instance, and if it does. and is also not "active"
-                e.className = "activated" // sets the instances className to "activated"
-                e.active = true // sets a new attribute and sets it to equal 'true'
-                activeEvidence = e // assigns the modified element to the activeEvidence variable
+            if (e.element === this.element && !this.active) { // checks if the element provided as an argument (e) is the same as the element of the instance, and if it does, and is also not "active"...
+                e.active = true // ...sets a new attribute and sets it to equal 'true'
+                activeEvidence = e // ...assigns the modified element to the activeEvidence variable
             } else { // if it doesnt meet those conditions
                 e.element.className = 'btn-dark' // the button is set to display as dark
                 e.active = false // the active tag is set to false
@@ -41,10 +44,10 @@ class Evidence {
         })
     }
 
-    render() { // simple function that assigns attributes to evidence instances
+    render() { // simple function that assigns attributes to the button HTML element from the instance object
         this.element.innerText = this.name // sets the name of the evidence (this) as the displayed text
         this.element.id = `evidence-${this.id}` // sets the id of the evidence (this)   
-        return this.element // returns the modified evidence element
+        return this.element // returns the modified evidence element - addEvidenceButtonsToDom()
     }
 
     addEvidenceListeners() { // adds event listeners to the evidence buttons
