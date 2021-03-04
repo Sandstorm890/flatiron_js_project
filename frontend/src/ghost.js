@@ -77,7 +77,6 @@ class Ghost {
 
     render() { // initializes the element that displays each indiviual ghost object on the DOM
         this.element.className = "list-group-item" // some CSS styling happens here
-
         // sets the innerHTML of the element to be an unordered list displaying the ghosts name and attributes
         this.element.innerHTML = `
             <strong class="name display-4">${this.name}</strong>
@@ -87,9 +86,7 @@ class Ghost {
                 <label class="font-weight-bold">Weaknesses </label>
                 <li class="weaknesses">${this.weaknesses}</li><br>
                 <label class="font-weight-bold">Evidence </label>
-                <!-- the line below does some iteraitng through the list of all evidence instances to find the name of the one that has an ID that matches the ghosts evidence_id attribute --->
-                <!-- this is kinda hacky since its reliant on the IDs of the evindeces to start at 0 and increment perfectly, so it needs to change --->
-                <li class="evidence">${Evidence.all[this.evidence_id-1].name}</li>
+                <li class="evidence">${Evidence.all.filter(e => e.id == this.evidence_id)[0].name}</li>
                  
             </ul><br>
             <button class="edit btn-dark" data-id="${this.id}">Edit</button>
@@ -99,10 +96,12 @@ class Ghost {
     }
 
     attachToDom() { // attaches things to the DOM
-        console.log(this.element)
+        // console.log(this.element)
         this.render() // takes the current instance of ghost and passes it to the 'render' function, which returns the appropriate HTML
         Ghost.container.appendChild(this.element) // attaches the ghost instance's HTML to the 'ghost-list' element returned by the 'container' class-level variable
         this.element.addEventListener('click', this.handleLiClick) // adds an event listener to the element's buttons
 
     }
+
+    
 }
