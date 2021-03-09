@@ -18,27 +18,23 @@ class Evidence {
         dropdown.append(option) // appends the <option> to the variable 'dropdown' which is defined in the index file and is the <select> element where we want to display the evidences
     }
 
-    addToEditDropDown() {
-        const option = document.createElement('option')
-        option.value  = this.id
-        option.innerText = this.name
-        dropdownEdit.append(option)
-    }
+    // addToEditDropDown() {
+    //     const option = document.createElement('option')
+    //     option.value  = this.id
+    //     option.innerText = this.name
+    //     dropdownEdit.append(option)
+    // }
 
     getEvidenceNameById() {
-        return Evidence.all.find(evidence => evidence.id === this.evidence_id)[0],name
+        return Evidence.all.find(evidence => evidence.id === this.evidence_id)[0].name
     }
 
     currentEvidence = (e) => {
         let activeEvidence // sets an undefined variable to assign instances of evidence to (if any)
         Evidence.all.forEach(e => { // iterates through all of our stored evidence instances
             if (e.element === this.element && !this.active) { // checks if the element provided as an argument (e) is the same as the element of the instance, and if it does, and is also not "active"...
-                e.active = true // ...sets a new attribute and sets it to equal 'true'
                 activeEvidence = e // ...assigns the modified element to the activeEvidence variable
-            } else { // if it doesnt meet those conditions
-                e.element.className = 'btn-dark' // the button is set to display as dark
-                e.active = false // the active tag is set to false
-            }
+            } 
             
             Ghost.filterByEvidence(activeEvidence) // feeds the returned info to the filterByEvidence class-level function (will feed it null if there were no matches from the if-else statement)
         })
