@@ -13,13 +13,13 @@ class Ghost {
         this.element.dataset["id"] = id // assigns DOMStringMap an ID attrribute equal to the ghosts ID
         this.element.id = `ghost-${id}` // sets the ID of the HTML element to equal the ghosts ID
         Ghost.all.push(this) // pushes the instance to the 'all' array defined above
-
     }
 
     handleLiClick = (e) => { // handles the click for the Edit/Delete buttons
         if (e.target.innerText === "Edit") { // if the button says 'edit'
             e.target.innerText = "Save" // set the display text to 'save'
             this.createEditFields(e.target) // calls the createEditFields function on the ul element
+            
         } else if (e.target.innerText === "Delete") { // if the button says 'delete'
             this.deleteGhost(e) // call the deleteGhost function on the ul element to delete the ghost record from the database
         } else if (e.target.innerText === "Save") { // if the button says 'save'
@@ -28,7 +28,7 @@ class Ghost {
         }
     }
 
-    createEditFields = (editBtn) => { // called by the handleLiClick function to create fields in which to edit the ghost's information
+    createEditFields = () => { // called by the handleLiClick function to create fields in which to edit the ghost's information
         const ul = this.element.querySelector('ul') // finds the <ul> element which contains the ghost and its info
         const ghostName = this.element.querySelector('strong') // finds the <strong> element (which is the name) and assigns it to a variable
         let nameInputValue = ghostName.innerText // assigns the text data (ghosts name) to a variable
@@ -40,7 +40,7 @@ class Ghost {
 
             if (e.className === "evidence") { // if the class of the element equals "evidence"
                 e.outerHTML = `<select class="edit-${name}" value="${inputValue}">` // change it to a <select> drop-down field
-            
+                
             } else if (e.className === "strengths" || e.className === "weaknesses") { // if the class of the element is "strengths" or "weaknesses"
                 e.outerHTML = `<input type="text" class="edit-${name}" value="${inputValue}">` // change it to a text field so it can be edited
             }
@@ -51,6 +51,8 @@ class Ghost {
         this.name = this.element.querySelector(".edit-name").value // sets the name of the JS ghost object to equal the new value found in the edit form 
         this.weaknesses = this.element.querySelector(".edit-weaknesses").value // updates the weaknesses of the JS object
         this.strengths = this.element.querySelector(".edit-strengths").value // updates the strengths of the JS object
+        // console.log(this.element.querySelector(".edit-evidence").value)
+        // this.evidence = this.element.querySelector(".edit-evidence").value
         ghostApi.editGhost(this) // passes the JS object to the ghostApi function editGhost to update the database
     }
 
@@ -71,7 +73,7 @@ class Ghost {
     }
 
     deleteGhost = (e) => { // handles deleting the ghost object from the DOM and from the database in the backend
-        this.element.remove() // removes the object from the DOM - OPTOMISTIC RENDERING 
+        this.element.remove() // removes the object from the DOM - OPTIMISTIC RENDERING 
         ghostApi.deleteGhost(this.id) // calls the deleteGhost instance function of the ghostApi instance to delete the ghost from the database
     }
 
@@ -85,7 +87,7 @@ class Ghost {
                 <li class="strengths">${this.strengths}</li><br>
                 <label class="font-weight-bold">Weaknesses </label>
                 <li class="weaknesses">${this.weaknesses}</li><br>
-                <label class="font-weight-bold">Evidence </label>
+                <label class="font-weight-bold">Evidence</label>
                 <li class="evidence">${Evidence.all.filter(e => e.id == this.evidence_id)[0].name}</li>
                  
             </ul><br>
@@ -96,12 +98,9 @@ class Ghost {
     }
 
     attachToDom() { // attaches things to the DOM
-        // console.log(this.element)
         this.render() // takes the current instance of ghost and passes it to the 'render' function, which returns the appropriate HTML
         Ghost.container.appendChild(this.element) // attaches the ghost instance's HTML to the 'ghost-list' element returned by the 'container' class-level variable
         this.element.addEventListener('click', this.handleLiClick) // adds an event listener to the element's buttons
-
     }
 
-    
 }
