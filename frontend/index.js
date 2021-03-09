@@ -12,10 +12,13 @@ const evidenceInput = document.getElementById("evidence-dropdown")
 const submitButton = document.getElementById("submit-btn")
 const showAllButton = document.getElementById("show-all-btn")
 const evidenceButtons = document.getElementById("evidence-buttons")
-
+const sortButton = document.getElementById("sort-btn")
+const partyButton = document.getElementById("party-btn")
 
 submitButton.addEventListener('click', handleSubmit)
 showAllButton.addEventListener('click', unhideAll)
+sortButton.addEventListener('click', sortAplhabetically)
+partyButton.addEventListener('click', partyTime)
 
 function handleSubmit(e) { // function that is called when submit button is clicked
     e.preventDefault() // stops the submit action from rerendering the page
@@ -24,9 +27,25 @@ function handleSubmit(e) { // function that is called when submit button is clic
 }
 
 function unhideAll() { // unhides all of the hidden ul elements that are hidden by the evidence sort functions
-    for (let i of list.children) { // iterated through all of the children of the ghost-list ul element
+    const ghosts = [...Ghost.all]
+    for (let g of ghosts) {list.appendChild(g.render())}
+    for (let i of list.children) { // iterates through all of the children of the ghost-list ul element
         i.style.display = "" // sets the display attribute of each element to equal an empty string so it displays on the page
     }
+}
+
+function sortAplhabetically() {
+    const ghosts = [...Ghost.all].sort((a, b) => (a.name > b.name) ? 1 : -1)
+    for (let g of ghosts) {list.appendChild(g.render())}
+}
+
+function partyTime() {
+    const colors = ["primary", "success", "danger", "warning", "info" ]
+    const randomBackgroundColor = colors[Math.floor(Math.random() * colors.length)]
+    const randomButtonColor = colors[Math.floor(Math.random() * colors.length)]
+    const background = document.getElementById("background")
+    background.className = `bg-${randomBackgroundColor} ml-4`
+    partyButton.className = `btn btn-${randomButtonColor}`
 }
 
 ghostApi.getGhosts() // calls the getGhosts function of the ghostApi class to get all the data about our ghosts and display them on the page
