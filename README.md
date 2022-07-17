@@ -1,6 +1,9 @@
 README
 JavaScript Project - Zayne Goering 2/21/2021
 
+Video Walkthrough:
+https://youtu.be/-nJ4Uu7Ef7k
+
 Description:
 
 This single-page webapp allows users to create and define attributes for 'Ghosts', and persist their data to a Rails backend server using a JSON-API.
