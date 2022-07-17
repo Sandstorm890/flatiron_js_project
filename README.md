@@ -1,8 +1,7 @@
 README
 JavaScript Project - Zayne Goering 2/21/2021
 
-Video Walkthrough:
-https://youtu.be/-nJ4Uu7Ef7k
+
 
 Description:
 
